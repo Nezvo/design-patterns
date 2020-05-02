@@ -2,6 +2,9 @@
 
 namespace GangOfFour.Memento
 {
+	/// <summary>
+	/// Caretaker
+	/// </summary>
 	public class History
 	{
 		private readonly Stack<EditorMemento> states = new Stack<EditorMemento>();

@@ -1,5 +1,8 @@
 ﻿namespace GangOfFour.Memento
 {
+	/// <summary>
+	/// Memento
+	/// </summary>
 	public class EditorMemento
 	{
 		public string Content { get; }
