@@ -1,6 +1,7 @@
 ﻿using GangOfFour.Iterator;
 using GangOfFour.Memento;
 using GangOfFour.State;
+using GangOfFour.Strategy;
 using System;
 
 namespace GangOfFour
@@ -50,6 +51,16 @@ namespace GangOfFour
 				Console.WriteLine(iterator.Current());
 				iterator.Next();
 			}
+			#endregion
+
+			#region Strategy pattern
+			Console.WriteLine("\nStrategy Pattern");
+			var imageStorage = new ImageStorage();
+			imageStorage.Compressor = new JpegCompressor();
+			imageStorage.Filter = new BlackAndWhiteFilter();
+			imageStorage.Store("image");
+			imageStorage.Compressor = new PnggCompressor();
+			imageStorage.Store("image");
 			#endregion
 		}
 	}
