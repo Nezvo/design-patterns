@@ -59,7 +59,7 @@ namespace GangOfFour
 			imageStorage.Compressor = new JpegCompressor();
 			imageStorage.Filter = new BlackAndWhiteFilter();
 			imageStorage.Store("image");
-			imageStorage.Compressor = new PnggCompressor();
+			imageStorage.Compressor = new PngCompressor();
 			imageStorage.Store("image");
 			#endregion
 		}
