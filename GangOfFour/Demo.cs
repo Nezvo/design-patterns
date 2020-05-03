@@ -1,4 +1,5 @@
-﻿using GangOfFour.Memento;
+﻿using GangOfFour.Iterator;
+using GangOfFour.Memento;
 using GangOfFour.State;
 using System;
 
@@ -6,7 +7,7 @@ namespace GangOfFour
 {
 	class Demo
 	{
-		static void Main(string[] args)
+		static void Main()
 		{
 			#region Memento pattern
 			Console.WriteLine("\nMemento Pattern");
@@ -34,6 +35,21 @@ namespace GangOfFour
 			canvas.CurrentTool = new BrushTool();
 			canvas.MouseDown();
 			canvas.MouseUp();
+			#endregion
+
+			#region Iterator pattern
+			Console.WriteLine("\nIterator Pattern");
+			var browseHistory = new BrowseHistory();
+			browseHistory.Push("a");
+			browseHistory.Push("b");
+			browseHistory.Push("c");
+
+			var iterator = browseHistory.CreateIterator();
+			while (iterator.HasNext())
+			{
+				Console.WriteLine(iterator.Current());
+				iterator.Next();
+			}
 			#endregion
 		}
 	}
