@@ -13,7 +13,7 @@
 			set
 			{
 				isEnabled = value;
-				NotifyObservers();
+				NotifyEventHandlers();
 			}
 		}
 	}

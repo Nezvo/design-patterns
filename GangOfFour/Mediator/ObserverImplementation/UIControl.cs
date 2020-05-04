@@ -9,6 +9,6 @@ namespace GangOfFour.Mediator.ObserverImplementation
 
 		public void AddEventHandler(Action action) => eventHandlers.Add(action);
 
-		protected void NotifyObservers() => eventHandlers.ForEach(action => action());
+		protected void NotifyEventHandlers() => eventHandlers.ForEach(action => action());
 	}
 }

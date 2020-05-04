@@ -13,7 +13,7 @@
 			set
 			{
 				text = value;
-				NotifyObservers();
+				NotifyEventHandlers();
 			}
 		}
 	}

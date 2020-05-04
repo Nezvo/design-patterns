@@ -13,7 +13,7 @@
 			set
 			{
 				selection = value;
-				NotifyObservers();
+				NotifyEventHandlers();
 			}
 		}
 	}
