@@ -1,4 +1,6 @@
-﻿using GangOfFour.Iterator;
+﻿using GangOfFour.Command;
+using GangOfFour.Command.Undo;
+using GangOfFour.Iterator;
 using GangOfFour.Memento;
 using GangOfFour.State;
 using GangOfFour.Strategy;
@@ -14,7 +16,7 @@ namespace GangOfFour
 			#region Memento pattern
 			Console.WriteLine("\nMemento Pattern demo:");
 			var editor = new Editor();
-			var history = new History();
+			var history = new Memento.History();
 
 			editor.Content = "a";
 			history.Push(editor.CreateMemento());
@@ -65,11 +67,41 @@ namespace GangOfFour
 			#endregion
 
 			#region Template mehod pattern
-			Console.WriteLine("\nTemplate mehod Pattern demo:");
+			Console.WriteLine("\nTemplate Method Pattern demo:");
 			var transferMoneyTask = new TransferMoneyTask();
 			var generateReportTask = new GenerateReportTask();
 			transferMoneyTask.Execute();
 			generateReportTask.Execute();
+			#endregion
+
+			#region Command pattern
+			Console.WriteLine("\nCommand Pattern demo:");
+			var service = new CustomerService();
+			var command = new AddCustomerCommand(service);
+			var button = new Button(command);
+			button.Click();
+
+			// Used for recording user commands and replaying them or undoing them
+			var composite = new CompositeCommand();
+			composite.Add(new ResizeCommand());
+			composite.Add(new BlackAndWhiteCommand());
+			composite.Execute();
+			composite.Execute();
+
+			// Track changes and ability to undo them
+			var historyCommand = new Command.Undo.History();
+			var document = new Document();
+			document.Content = "Content";
+			var boldCommand = new BoldCommand(document, historyCommand);
+			var undoCommand = new UndoCommand(historyCommand);
+			boldCommand.Execute();
+			boldCommand.Execute();
+			Console.WriteLine(document.Content);
+			undoCommand.Execute();
+			Console.WriteLine(document.Content);
+			undoCommand.Execute();
+			Console.WriteLine(document.Content);
+
 			#endregion
 		}
 	}
