@@ -127,6 +127,12 @@ namespace GangOfFour
 			article.SimulateUserInteraction1();
 			article.SimulateUserInteraction2();
 			article.SimulateUserInteraction3();
+
+			Console.WriteLine("\nMediator Pattern using observer pattern demo:");
+			var article2 = new Mediator.ObserverImplementation.ArticleDialogBox();
+			article2.SimulateUserInteraction1();
+			article2.SimulateUserInteraction2();
+			article2.SimulateUserInteraction3();
 			#endregion
 		}
 	}

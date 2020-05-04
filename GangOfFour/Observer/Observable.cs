@@ -11,12 +11,13 @@ namespace GangOfFour.Observer
 		private List<IObserver<T>> observers = new List<IObserver<T>>();
 
 		public void AddObserver(IObserver<T> observer) => observers.Add(observer);
+		public void Remove(IObserver<T> observer) => observers.Remove(observer);
 
 		public void RemoveObserver(IObserver<T> observer) => observers.Remove(observer);
 
-		public void PushNotifyObservers(T value) => observers.ForEach(observer => observer.Update(value));
+		protected void PushNotifyObservers(T value) => observers.ForEach(observer => observer.Update(value));
 
-		public void PullNotifyObservers() => observers.ForEach(observer => observer.Update());
+		protected void PullNotifyObservers() => observers.ForEach(observer => observer.Update());
 
 	}
 }
