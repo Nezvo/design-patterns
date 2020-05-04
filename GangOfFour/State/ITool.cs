@@ -8,10 +8,10 @@
 		/// <summary>
 		/// Handle
 		/// </summary>
-		public abstract void MouseUp();
+		void MouseUp();
 		/// <summary>
 		/// Handle
 		/// </summary>
-		public abstract void MouseDown();
+		void MouseDown();
 	}
 }
