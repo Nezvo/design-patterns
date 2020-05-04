@@ -2,6 +2,7 @@
 using GangOfFour.Command.Undo;
 using GangOfFour.Iterator;
 using GangOfFour.Memento;
+using GangOfFour.Observer;
 using GangOfFour.State;
 using GangOfFour.Strategy;
 using GangOfFour.TemplateMethod;
@@ -101,7 +102,22 @@ namespace GangOfFour
 			Console.WriteLine(document.Content);
 			undoCommand.Execute();
 			Console.WriteLine(document.Content);
+			#endregion
 
+			#region Observer Pattern
+			// Microsoft already provided the IObserver<T> and IObservable<T> interfaces provide a generalized mechanism for the observer design pattern.
+			// The IObservable<T> interface represents the class that sends notifications (the provider/source)
+			// The IObserver<T> interface represents the class that receives them (the observer).
+			Console.WriteLine("\nObserver Pattern demo:");
+			var dataSource = new DataSource();
+			var sheet1 = new Spreadsheet(dataSource);
+			var sheet2 = new Spreadsheet(dataSource);
+			var chart = new Chart(dataSource);
+			dataSource.AddObserver(sheet1);
+			dataSource.AddObserver(sheet2);
+			dataSource.AddObserver(chart);
+			dataSource.Value = 3;
+			dataSource.Value = 2;
 			#endregion
 		}
 	}
