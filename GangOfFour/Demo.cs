@@ -1,6 +1,7 @@
 ﻿using GangOfFour.Command;
 using GangOfFour.Command.Undo;
 using GangOfFour.Iterator;
+using GangOfFour.Mediator;
 using GangOfFour.Memento;
 using GangOfFour.Observer;
 using GangOfFour.State;
@@ -79,7 +80,7 @@ namespace GangOfFour
 			Console.WriteLine("\nCommand Pattern demo:");
 			var service = new CustomerService();
 			var command = new AddCustomerCommand(service);
-			var button = new Button(command);
+			var button = new Command.Button(command);
 			button.Click();
 
 			// Used for recording user commands and replaying them or undoing them
@@ -118,6 +119,14 @@ namespace GangOfFour
 			dataSource.AddObserver(chart);
 			dataSource.Value = 3;
 			dataSource.Value = 2;
+			#endregion
+
+			#region Mediator pattern
+			Console.WriteLine("\nMediator Pattern demo:");
+			var article = new ArticleDialogBox();
+			article.SimulateUserInteraction1();
+			article.SimulateUserInteraction2();
+			article.SimulateUserInteraction3();
 			#endregion
 		}
 	}
