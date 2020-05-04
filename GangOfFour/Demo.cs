@@ -2,6 +2,7 @@
 using GangOfFour.Memento;
 using GangOfFour.State;
 using GangOfFour.Strategy;
+using GangOfFour.TemplateMethod;
 using System;
 
 namespace GangOfFour
@@ -11,7 +12,7 @@ namespace GangOfFour
 		static void Main()
 		{
 			#region Memento pattern
-			Console.WriteLine("\nMemento Pattern");
+			Console.WriteLine("\nMemento Pattern demo:");
 			var editor = new Editor();
 			var history = new History();
 
@@ -28,7 +29,7 @@ namespace GangOfFour
 			#endregion
 
 			#region State pattern
-			Console.WriteLine("\nState Pattern");
+			Console.WriteLine("\nState Pattern demo:");
 			var canvas = new Canvas();
 			canvas.CurrentTool = new SelectionTool();
 			canvas.MouseDown();
@@ -39,7 +40,7 @@ namespace GangOfFour
 			#endregion
 
 			#region Iterator pattern
-			Console.WriteLine("\nIterator Pattern");
+			Console.WriteLine("\nIterator Pattern demo:");
 			var browseHistory = new BrowseHistory();
 			browseHistory.Push("a");
 			browseHistory.Push("b");
@@ -54,13 +55,21 @@ namespace GangOfFour
 			#endregion
 
 			#region Strategy pattern
-			Console.WriteLine("\nStrategy Pattern");
+			Console.WriteLine("\nStrategy Pattern demo:");
 			var imageStorage = new ImageStorage();
 			imageStorage.Compressor = new JpegCompressor();
 			imageStorage.Filter = new BlackAndWhiteFilter();
 			imageStorage.Store("image");
 			imageStorage.Compressor = new PngCompressor();
 			imageStorage.Store("image");
+			#endregion
+
+			#region Template mehod pattern
+			Console.WriteLine("\nTemplate mehod Pattern demo:");
+			var transferMoneyTask = new TransferMoneyTask();
+			var generateReportTask = new GenerateReportTask();
+			transferMoneyTask.Execute();
+			generateReportTask.Execute();
 			#endregion
 		}
 	}
