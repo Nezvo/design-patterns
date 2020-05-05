@@ -1,4 +1,5 @@
-﻿using GangOfFour.Command;
+﻿using GangOfFour.ChainOfResponsibility;
+using GangOfFour.Command;
 using GangOfFour.Command.Undo;
 using GangOfFour.Iterator;
 using GangOfFour.Mediator;
@@ -68,7 +69,7 @@ namespace GangOfFour
 			imageStorage.Store("image");
 			#endregion
 
-			#region Template mehod pattern
+			#region Template method pattern
 			Console.WriteLine("\nTemplate Method Pattern demo:");
 			var transferMoneyTask = new TransferMoneyTask();
 			var generateReportTask = new GenerateReportTask();
@@ -105,7 +106,7 @@ namespace GangOfFour
 			Console.WriteLine(document.Content);
 			#endregion
 
-			#region Observer Pattern
+			#region Observer pattern
 			// Microsoft already provided the IObserver<T> and IObservable<T> interfaces provide a generalized mechanism for the observer design pattern.
 			// The IObservable<T> interface represents the class that sends notifications (the provider/source)
 			// The IObserver<T> interface represents the class that receives them (the observer).
@@ -133,6 +134,21 @@ namespace GangOfFour
 			article2.SimulateUserInteraction1();
 			article2.SimulateUserInteraction2();
 			article2.SimulateUserInteraction3();
+			#endregion
+
+			#region Chain of responsibility pattern
+			Console.WriteLine("\nChain Of Responsibility Pattern demo:");
+			// We create chain authenticator -> logger -> compressor -> encryptor
+			var encryptor = new Encryptor(null);
+			var compressor = new Compressor(encryptor);
+			var logger = new Logger(compressor);
+			var authenticator = new Authenticator(logger);
+			// We pass our first handler from the chain
+			var server = new WebServer(authenticator);
+			Console.WriteLine("Correct username & password:");
+			server.Handle(new HttpRequest("user", "pass"));
+			Console.WriteLine("Incorrect username & password:");
+			server.Handle(new HttpRequest("user", "1234"));
 			#endregion
 		}
 	}
