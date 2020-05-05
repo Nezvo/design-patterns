@@ -1,4 +1,6 @@
-﻿using GangOfFour.ChainOfResponsibility;
+﻿using GangOfFour.Adapter;
+using GangOfFour.Adapter.ExternalFilters;
+using GangOfFour.ChainOfResponsibility;
 using GangOfFour.Command;
 using GangOfFour.Command.Undo;
 using GangOfFour.Composite;
@@ -182,6 +184,13 @@ namespace GangOfFour
 			group.Add(group2);
 			group.Render();
 			group.Move();
+			#endregion
+
+			#region Adapter pattern
+			Console.WriteLine("\nAdapter Pattern demo:");
+			var image = new ImageView(new Image());
+			image.Apply(new CaramelFilterAdapterUsingComposition(new CaramelFilter()));
+			image.Apply(new CaramelFilterAdapterUsingInheritance());
 			#endregion
 
 			#endregion
