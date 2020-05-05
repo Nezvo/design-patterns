@@ -4,6 +4,7 @@ using GangOfFour.ChainOfResponsibility;
 using GangOfFour.Command;
 using GangOfFour.Command.Undo;
 using GangOfFour.Composite;
+using GangOfFour.Decorator;
 using GangOfFour.Iterator;
 using GangOfFour.Mediator;
 using GangOfFour.Memento;
@@ -191,6 +192,14 @@ namespace GangOfFour
 			var image = new ImageView(new Image());
 			image.Apply(new CaramelFilterAdapterUsingComposition(new CaramelFilter()));
 			image.Apply(new CaramelFilterAdapterUsingInheritance());
+			#endregion
+
+			#region Decorator pattern
+			Console.WriteLine("\nDecorator Pattern demo:");
+			// We decorate CloudStream with CompressedCloudStream and then EncryptedCloudStream
+			// first encrypting then compressing the data
+			var cloudStream = new EncryptedCloudStream(new CompressedCloudStream(new CloudStream()));
+			cloudStream.Write("Test data");
 			#endregion
 
 			#endregion
