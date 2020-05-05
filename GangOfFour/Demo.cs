@@ -8,6 +8,7 @@ using GangOfFour.Observer;
 using GangOfFour.State;
 using GangOfFour.Strategy;
 using GangOfFour.TemplateMethod;
+using GangOfFour.Visitor;
 using System;
 
 namespace GangOfFour
@@ -137,7 +138,7 @@ namespace GangOfFour
 			#endregion
 
 			#region Chain of responsibility pattern
-			Console.WriteLine("\nChain Of Responsibility Pattern demo:");
+			Console.WriteLine("\nChain of Responsibility Pattern demo:");
 			// We create chain authenticator -> logger -> compressor -> encryptor
 			var encryptor = new Encryptor(null);
 			var compressor = new Compressor(encryptor);
@@ -149,6 +150,15 @@ namespace GangOfFour
 			server.Handle(new HttpRequest("user", "pass"));
 			Console.WriteLine("Incorrect username & password:");
 			server.Handle(new HttpRequest("user", "1234"));
+			#endregion
+
+			#region Visitor pattern
+			Console.WriteLine("\nVisitor Pattern demo:");
+			var htmlDocument = new HtmlDocument();
+			htmlDocument.AddNode(new HeadingNode());
+			htmlDocument.AddNode(new AnchorNode());
+			htmlDocument.Execute(new HighlightVisitor());
+			htmlDocument.Execute(new PlainTextVisitor());
 			#endregion
 		}
 	}
