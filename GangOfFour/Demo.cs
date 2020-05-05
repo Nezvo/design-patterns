@@ -1,6 +1,7 @@
 ﻿using GangOfFour.ChainOfResponsibility;
 using GangOfFour.Command;
 using GangOfFour.Command.Undo;
+using GangOfFour.Composite;
 using GangOfFour.Iterator;
 using GangOfFour.Mediator;
 using GangOfFour.Memento;
@@ -17,6 +18,8 @@ namespace GangOfFour
 	{
 		static void Main()
 		{
+			#region Behavioural patterns
+
 			#region Memento pattern
 			Console.WriteLine("\nMemento Pattern demo:");
 			var editor = new Editor();
@@ -159,6 +162,28 @@ namespace GangOfFour
 			htmlDocument.AddNode(new AnchorNode());
 			htmlDocument.Execute(new HighlightVisitor());
 			htmlDocument.Execute(new PlainTextVisitor());
+			#endregion
+
+			#endregion
+
+			#region Structural patterns
+
+			#region Composite pattern
+			Console.WriteLine("\nComposite Pattern demo:");
+			var group1 = new Group();
+			group1.Add(new Shape());
+			group1.Add(new Shape());
+			var group2 = new Group();
+			group2.Add(new Shape());
+			group2.Add(new Shape());
+
+			var group = new Group();
+			group.Add(group1);
+			group.Add(group2);
+			group.Render();
+			group.Move();
+			#endregion
+
 			#endregion
 		}
 	}
