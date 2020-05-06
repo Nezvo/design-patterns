@@ -12,11 +12,13 @@ using GangOfFour.Iterator;
 using GangOfFour.Mediator;
 using GangOfFour.Memento;
 using GangOfFour.Observer;
+using GangOfFour.Proxy;
 using GangOfFour.State;
 using GangOfFour.Strategy;
 using GangOfFour.TemplateMethod;
 using GangOfFour.Visitor;
 using System;
+using System.Collections.Generic;
 
 namespace GangOfFour
 {
@@ -225,6 +227,14 @@ namespace GangOfFour
 			var remoteControl = new AdvancedRemoteControl(new SamsungTV());
 			remoteControl.TurnOn();
 			remoteControl.SetChannel(1);
+			#endregion
+
+			#region Proxy pattern
+			Console.WriteLine("\nProxy Pattern demo:");
+			var library = new Library();
+			var fileNames = new List<string> { "a", "b", "c" };
+			fileNames.ForEach(fileName => library.Add(new LoggingEbookProxy(fileName)));
+			library.Open("a");
 			#endregion
 
 			#endregion
