@@ -5,6 +5,7 @@ using GangOfFour.Command;
 using GangOfFour.Command.Undo;
 using GangOfFour.Composite;
 using GangOfFour.Decorator;
+using GangOfFour.Facade;
 using GangOfFour.Iterator;
 using GangOfFour.Mediator;
 using GangOfFour.Memento;
@@ -200,6 +201,12 @@ namespace GangOfFour
 			// first encrypting then compressing the data
 			var cloudStream = new EncryptedCloudStream(new CompressedCloudStream(new CloudStream()));
 			cloudStream.Write("Test data");
+			#endregion
+
+			#region Facade pattern
+			Console.WriteLine("\nFacade Pattern demo:");
+			var notificationService = new NotificationService();
+			notificationService.Send("message", "target");
 			#endregion
 
 			#endregion
