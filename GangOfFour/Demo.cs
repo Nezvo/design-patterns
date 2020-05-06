@@ -1,5 +1,6 @@
 ﻿using GangOfFour.Adapter;
 using GangOfFour.Adapter.ExternalFilters;
+using GangOfFour.Bridge;
 using GangOfFour.ChainOfResponsibility;
 using GangOfFour.Command;
 using GangOfFour.Command.Undo;
@@ -217,6 +218,13 @@ namespace GangOfFour
 			{
 				point.Draw();
 			}
+			#endregion
+
+			#region Bridge pattern
+			Console.WriteLine("\nBridge Pattern demo:");
+			var remoteControl = new AdvancedRemoteControl(new SamsungTV());
+			remoteControl.TurnOn();
+			remoteControl.SetChannel(1);
 			#endregion
 
 			#endregion
