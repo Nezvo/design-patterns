@@ -6,6 +6,7 @@ using GangOfFour.Command.Undo;
 using GangOfFour.Composite;
 using GangOfFour.Decorator;
 using GangOfFour.Facade;
+using GangOfFour.Flyweight;
 using GangOfFour.Iterator;
 using GangOfFour.Mediator;
 using GangOfFour.Memento;
@@ -207,6 +208,15 @@ namespace GangOfFour
 			Console.WriteLine("\nFacade Pattern demo:");
 			var notificationService = new NotificationService();
 			notificationService.Send("message", "target");
+			#endregion
+
+			#region Flyweight pattern
+			Console.WriteLine("\nFlyweight Pattern demo:");
+			var pointService = new PointService(new PointIconFactory());
+			foreach (var point in pointService.GetPoints())
+			{
+				point.Draw();
+			}
 			#endregion
 
 			#endregion
